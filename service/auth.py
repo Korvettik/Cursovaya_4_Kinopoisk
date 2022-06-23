@@ -1,7 +1,6 @@
-
 from dao.auth import AuthDAO
 from required import generate_password, secret, algo
-from flask import abort, jsonify
+from flask import abort
 import datetime
 import calendar
 import jwt
@@ -18,34 +17,25 @@ class AuthService:
 
     def cheking(self, req_json):
         email = req_json.get("email", None)
-        # print(email)
         password = req_json.get("password", None)
-        # print(password)
 
         if None in [email, password]:
             abort(400)
 
         # делаем запрос в бд и получаем строку-кортеж (если она есть и соответствует выше), (имя, хэш-пароль, роль)
         user = self.dao.get_user(email)
-        # print(user)
         if user is None:
             return {"error": "Неверные учётные данные"}, 401
 
         # если все ок, делаем новый хэш из полученного пароля (с проверкой) - проверка пароля
         user_password = generate_password(password)  # делаем хэш из полученного пароля
-        # print(user_password)
         if user.password != user_password:  # сравниваем хэш-пароль пользователя из бд с хэш-паролем введенным
             return {"error": "Неверные учётные данные"}, 401
 
         # если все ок, формируем данные пользователя (спецсловарь) из базы данных (далее пригодится)
         # в реальности это просто будет информация для работы с бд, она будет храниться в шифрованном виде
         # пароль сюда в чистом виде лучше не сувать
-        # data = {
-        #     "password": user.password,
-        #     "email": user.email
-        # }
-        # print(user_password)
-        # print(user.email)
+
         data = {
             "email": user.email
         }
@@ -86,10 +76,7 @@ class AuthService:
         user = self.dao.get_user(email)
 
         # формируем данные пользователя (спецсловарь) из базы данных (далее пригодится)
-        # data = {
-        #     "password": user.password,
-        #     "email": user.email
-        # }
+
         data = {
             "email": user.email
         }

@@ -1,6 +1,6 @@
 from setup_db import db
 from marshmallow import Schema, fields
-import hashlib
+
 
 class User(db.Model):
     __tablename__ = 'user'
@@ -11,8 +11,7 @@ class User(db.Model):
     surname = db.Column(db.String)
     favorite_genre = db.Column(db.String)
 
-    # def get_hash(self):
-    #     return hashlib.md5(self.password.encode('utf-8')).hexdigest()
+
 
 
 class UserSchema(Schema):

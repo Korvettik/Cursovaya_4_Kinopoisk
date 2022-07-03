@@ -19,7 +19,7 @@ class DirectorsView(Resource):
         return "", 201, {"location": f"/directors/{ent.id}"}
 
 
-@director_ns.route('/<int:bid>')
+@director_ns.route('/<int:bid>/')
 class DirectorView(Resource):
     def get(self, bid):
         director = director_service.get_one(bid)

@@ -16,7 +16,7 @@ class MoviesView(Resource):
         return MovieSchema(many=True).dump(movies), 200
 
 
-@movie_ns.route('/<int:bid>')
+@movie_ns.route('/<int:bid>/')
 class MovieView(Resource):
     def get(self, bid):
         movie = movie_service.get_one(bid)

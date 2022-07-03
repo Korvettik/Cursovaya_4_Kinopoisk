@@ -19,7 +19,7 @@ class GenresView(Resource):
         return "", 201, {"location": f"/genres/{ent.id}"}
 
 
-@genre_ns.route('/<int:bid>')
+@genre_ns.route('/<int:bid>/')
 class GenreView(Resource):
     def get(self, bid):
         genre = genre_service.get_one(bid)

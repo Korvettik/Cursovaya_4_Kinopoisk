@@ -47,8 +47,8 @@ class UserService:
 
         old_password = user.password
 
-        password1 = passwords['password1']
-        password2 = passwords['password2']
+        password1 = passwords['old_password']
+        password2 = passwords['new_password']
 
         if old_password == generate_password(password1):
             print(f'{old_password}   {generate_password(password1)}')

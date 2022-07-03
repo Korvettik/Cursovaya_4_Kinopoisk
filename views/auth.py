@@ -5,7 +5,7 @@ from implemented import auth_service
 auth_ns = Namespace('auth')
 
 
-@auth_ns.route('/register')
+@auth_ns.route('/register/')
 class AuthView_reg(Resource):
     def post(self):
         data = request.get_json()
@@ -13,7 +13,7 @@ class AuthView_reg(Resource):
         return post_new_user
 
 
-@auth_ns.route('/login')
+@auth_ns.route('/login/')
 class AuthView_log(Resource):
     def post(self):
         # функция проверки пользователя, что такой есть

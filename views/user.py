@@ -20,7 +20,7 @@ class UserView(Resource):
         return user_service.change_info(change_user), 204
 
 
-@user_ns.route('/password')
+@user_ns.route('/password/')
 class UserPasswd(Resource):
     @auth_required
     def put(self):

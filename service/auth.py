@@ -53,7 +53,8 @@ class AuthService:
         # print(refresh_token)
 
         # формируем результат
-        tokens = {"access_token": access_token.decode('utf-8'), "refresh_token": refresh_token.decode('utf-8')}
+        tokens = {"access_token": access_token.decode('utf-8'), "refresh_token": refresh_token.decode('utf-8')}  # ------ мой старый рабочий вариант ----------
+        # tokens = {"access_token": access_token, "refresh_token": refresh_token}
         print(tokens)
         # return jsonify(tokens), 201
         return tokens, 201
@@ -91,6 +92,7 @@ class AuthService:
         refresh_token = jwt.encode(data, secret, algorithm=algo)
 
         # формируем результат
-        tokens = {"access_token": access_token.decode('utf-8'), "refresh_token": refresh_token.decode('utf-8')}
+        tokens = {"access_token": access_token.decode('utf-8'), "refresh_token": refresh_token.decode('utf-8')}  # ------ мой старый рабочий вариант ----------
+        # tokens = {"access_token": access_token, "refresh_token": refresh_token}
 
         return tokens, 201
